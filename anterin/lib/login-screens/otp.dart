@@ -6,6 +6,7 @@ class OtpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< Updated upstream
     final TextEditingController otpController = TextEditingController();
 
     return Scaffold(
@@ -17,6 +18,23 @@ class OtpPage extends StatelessWidget {
             TextField(
               controller: otpController,
               decoration: const InputDecoration(labelText: "Enter OTP"),
+=======
+    final otpController = TextEditingController();
+
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+            const SizedBox(height: 20),
+            TextField(
+              controller: otpController,
+              decoration: const InputDecoration(
+                labelText: 'Enter OTP / Masukkan OTP',
+              ),
+>>>>>>> Stashed changes
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 20),
@@ -24,10 +42,17 @@ class OtpPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+<<<<<<< Updated upstream
                   MaterialPageRoute(builder: (context) => const NewPassPage()),
                 );
               },
               child: const Text("Verify"),
+=======
+                  MaterialPageRoute(builder: (_) => const NewPassPage()),
+                );
+              },
+              child: const Text('Verify'),
+>>>>>>> Stashed changes
             ),
           ],
         ),
@@ -35,4 +60,7 @@ class OtpPage extends StatelessWidget {
     );
   }
 }
+<<<<<<< Updated upstream
   
+=======
+>>>>>>> Stashed changes
