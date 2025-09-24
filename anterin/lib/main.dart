@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login-screens/start.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:anterin/routes/main_router.dart';
 
 void main() {
   runApp(const MyApp());
