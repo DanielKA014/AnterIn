@@ -5,15 +5,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'assets/images/anterin-logo-horizontal.png',
-          fit: BoxFit.contain,
-          height: 96.0,
-        ),
-      ),
-      body: Center(child: Text('Ini adalah Home Screen')),
+    return const Scaffold(
+      body: SafeArea(child: Text('Ini adalah Home Screen')),
+      // body: SafeArea(
+      //   child: ElevatedButton(onPressed: onPressed, child: child),
+      // ),
     );
   }
 }

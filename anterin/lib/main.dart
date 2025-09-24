@@ -1,7 +1,8 @@
 // import 'package:anterin/widgets/anterin_tab_bar.dart';
 import 'package:flutter/material.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:anterin/routers/main_router.dart';
+import 'package:anterin/routes/main_router.dart';
 
 void main() {
   runApp(const MyApp());
