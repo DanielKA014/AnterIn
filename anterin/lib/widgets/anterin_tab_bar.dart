@@ -91,14 +91,14 @@ class AnterinTabBar extends StatelessWidget {
   void _onItemTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go('/home');
+        context.goNamed('home');
         break;
       case 1:
-        context.go('/activity');
+        context.goNamed('activity');
       case 2:
-        context.go('/chat');
+        context.goNamed('chat');
       case 3:
-        context.go('/profile');
+        context.goNamed('profile');
       default:
     }
   }
