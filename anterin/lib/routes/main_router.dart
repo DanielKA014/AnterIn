@@ -1,7 +1,7 @@
-import 'package:anterin/widgets/anterin_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/home_screen.dart';
+import '../services/tab_bar_service.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 // final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(
@@ -20,7 +20,7 @@ class MainRouter {
           builder: (context, state, child) {
             final location = state.uri.toString();
             print(location);
-            return AnterinTabBar(location: location, child: child);
+            return TabBarService(location: location, child: child);
           },
           routes: [
             GoRoute(
