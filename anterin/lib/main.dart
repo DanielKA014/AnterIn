@@ -30,11 +30,9 @@ ThemeData _buildTheme(Brightness brightness) {
   final ThemeData baseTheme = ThemeData(brightness: brightness);
 
   return baseTheme.copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: Color(0x00008b4e)),
-    textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Color.fromARGB(255, 130, 255, 161),
-      foregroundColor: Colors.white,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Color.fromARGB(255, 78, 236, 54),
     ),
+    textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
   );
 }

@@ -6,10 +6,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Color.fromARGB(255, 130, 255, 161),
+      foregroundColor: Colors.white,
       title: Image.asset(
         'assets/images/anterin-logo-horizontal.png',
         fit: BoxFit.contain,
-        height: 96.0,
+        height: 72.0,
       ),
     );
   }

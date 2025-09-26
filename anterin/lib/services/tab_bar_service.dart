@@ -11,15 +11,19 @@ class TabBarService extends StatelessWidget {
 
   void _replaceScreen(BuildContext context, int index) {
     switch (index) {
+      // button kiri ke kanan
       case 0:
         context.goNamed('home');
         break;
       case 1:
         context.goNamed('activity');
+        break;
       case 2:
         context.goNamed('chat');
+        break;
       case 3:
         context.goNamed('profile');
+        break;
       default:
     }
   }
@@ -42,13 +46,22 @@ class TabBarService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(),
-      body: this.child,
-      bottomNavigationBar: TabBarWidget(
-        tappedButton: (index) => _replaceScreen(context, index),
-        currentIndex: _calculateIndex(context),
-      ),
-    );
+    final List<String> screenWithNavBar = [
+      '/home',
+      '/activity',
+      '/chat',
+      '/profile',
+    ];
+    if (screenWithNavBar.contains(location)) {
+      return Scaffold(
+        appBar: AppBarWidget(),
+        body: this.child,
+        bottomNavigationBar: TabBarWidget(
+          tappedButton: (index) => _replaceScreen(context, index),
+          currentIndex: _calculateIndex(context),
+        ),
+      );
+    }
+    return Scaffold(body: this.child);
   }
 }
