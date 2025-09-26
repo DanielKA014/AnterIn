@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'mobile_number.dart';
-import 'register.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -13,7 +12,11 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+            Image.asset(
+              'assets/images/anterin-logo-vertical.png',
+              width: 200,
+              height: 200,
+            ),
             const SizedBox(height: 20),
             TextField(
               decoration: const InputDecoration(
@@ -29,10 +32,12 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const MobileNumberPage()),
-                );
+                // Navigator.pushNamed(
+                //   context,
+                //   // MaterialPageRoute(builder: (_) => const MobileNumberPage()),
+                //   '/login/mobile-number/',
+                // );
+                context.pushNamed('mobile-number');
               },
               child: const Align(
                 alignment: Alignment.centerRight,
@@ -45,17 +50,24 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // sementara belum ada fungsi login
+                // langsung ke home aja, belum ada backend proper
+                // Navigator.of(context).pushAndRemoveUntil(
+                //   MaterialPageRoute(builder: (_) => const HomeScreen()),
+                //   ModalRoute.withName('/'),
+                // );
+                context.goNamed('home');
               },
               child: const Text('Login'),
             ),
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const RegisterPage()),
-                );
+                // Navigator.pushNamed(
+                //   context,
+                //   // MaterialPageRoute(builder: (_) => const RegisterPage()),
+                //   '/register',
+                // );
+                context.pushNamed('register');
               },
               child: const Text(
                 "Don’t have account? Register here\nTidak punya akun? Daftar disini",

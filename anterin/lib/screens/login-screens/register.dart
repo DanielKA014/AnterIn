@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -18,7 +18,11 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+              Image.asset(
+                'assets/images/anterin-logo-vertical.png',
+                width: 200,
+                height: 200,
+              ),
               const SizedBox(height: 20),
               TextField(
                 controller: nameController,
@@ -35,9 +39,7 @@ class RegisterPage extends StatelessWidget {
               ),
               TextField(
                 controller: passController,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                ),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
               ),
               TextField(
@@ -50,20 +52,22 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginPage()),
-                  );
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => const LoginPage()),
+                  // );
+                  context.goNamed('login');
                 },
                 child: const Text('Register / Daftar'),
               ),
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => const LoginPage()),
-                  );
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => const LoginPage()),
+                  // );
+                  context.goNamed('login');
                 },
                 child: const Text(
                   "Already have account? Login here\nSudah punya akun? Login disini",

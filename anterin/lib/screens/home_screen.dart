@@ -1,6 +1,8 @@
 // import 'package:anterin/routes/main_router.dart';
+import 'package:anterin/widgets/financial_provider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../widgets/provider_button_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,41 +10,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: SafeArea(child: Text('Ini adalah Home Screen')),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                onPressed: () => context.push('/home/motorcycle/'),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.motorcycle_outlined),
-                    SizedBox(width: 18),
-                    Text('Nebeng Motor'),
-                  ],
-                ),
+              FinancialProviderWidget(), //   WIDGET SALDO
+              ProviderButtonWidget(
+                goRoute: () => context.push('/home/motorcycle/'),
+                buttonTitle: 'Nebeng Motor',
+                iconName: Icons.motorcycle_outlined,
               ),
-              ElevatedButton(
-                onPressed: () => context.push('/home/car/'),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.car_rental_outlined),
-                    SizedBox(width: 18),
-                    Text('Nebeng Mobil'),
-                  ],
-                ),
+              ProviderButtonWidget(
+                goRoute: () => context.push('/home/car/'),
+                buttonTitle: 'Nebeng Mobil',
+                iconName: Icons.car_rental_outlined,
               ),
-              ElevatedButton(
-                onPressed: () => context.push('/home/delivery/'),
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.inventory_2_outlined),
-                    SizedBox(width: 18),
-                    Text('Titip Antar Barang'),
-                  ],
-                ),
+              ProviderButtonWidget(
+                goRoute: () => context.push('/home/delivery/'),
+                buttonTitle: 'Titip Antar Barang',
+                iconName: Icons.inventory_2_outlined,
               ),
               const SizedBox(height: 24),
             ],

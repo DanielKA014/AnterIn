@@ -1,22 +1,25 @@
+import 'package:anterin/screens/login-screens/login.dart';
+import 'package:anterin/screens/login-screens/mobile_number.dart';
+import 'package:anterin/screens/login-screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/home_screen.dart';
 import '../services/tab_bar_service.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
-// final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>(
-//   debugLabel: 'shell',
-// );
-
 // RETURN SCREEN DI SINI
 class MainRouter {
+  final GlobalKey<NavigatorState> _rootNavigatorKey =
+      GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _shellNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shell');
+
   GoRouter mainRouter() {
     final mainRouter = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: '/home',
+      initialLocation: '/',
       routes: [
         ShellRoute(
-          // navigatorKey: _shellNavigatorKey,
+          navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
             final location = state.uri.toString();
             print(location);
@@ -24,40 +27,58 @@ class MainRouter {
           },
           routes: [
             GoRoute(
+              path: '/',
+              name: 'login',
+              builder: (context, state) => const LoginPage(),
+            ),
+            GoRoute(
+              path: '/mobile-number',
+              name: 'mobile-number',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const MobileNumberPage(),
+            ),
+            GoRoute(
+              path: '/register',
+              name: 'register',
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) => const RegisterPage(),
+            ),
+            GoRoute(
               path: '/home',
               name: 'home',
               builder: (context, state) => const HomeScreen(),
-              routes: [
-                GoRoute(
-                  path: 'motorcycle',
-                  name: 'motorcycle',
-                  // entah kenapa parentNavigatorKey exception, padahal ngikutin blog orang
-                  // parentNavigatorKey: _shellNavigatorKey,
-                  builder: (context, state) {
-                    print(state.uri.toString());
-                    return const Placeholder();
-                  },
-                ),
-                GoRoute(
-                  path: 'car',
-                  name: 'car',
-                  builder: (context, state) {
-                    print(state.uri.toString());
-                    return const Placeholder();
-                  },
-                ),
-                GoRoute(
-                  path: 'delivery',
-                  name: 'delivery',
-                  // entah kenapa parentNavigatorKey exception, padahal ngikutin blog orang
-                  // parentNavigatorKey: _shellNavigatorKey,
-                  builder: (context, state) {
-                    print(state.uri.toString());
-                    return const Placeholder();
-                  },
-                ),
-              ],
             ),
+            GoRoute(
+              path: '/home/motorcycle',
+              name: 'motorcycle',
+              // parentNavigatorKey: _rootNavigatorKey,
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) {
+                print(state.uri.toString());
+                return const Placeholder();
+              },
+            ),
+            GoRoute(
+              path: '/home/car',
+              name: 'car',
+              // parentNavigatorKey: _rootNavigatorKey,
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) {
+                print(state.uri.toString());
+                return const Placeholder();
+              },
+            ),
+            GoRoute(
+              path: '/home/delivery',
+              name: 'delivery',
+              // parentNavigatorKey: _rootNavigatorKey,
+              parentNavigatorKey: _shellNavigatorKey,
+              builder: (context, state) {
+                print(state.uri.toString());
+                return const Placeholder();
+              },
+            ),
+
             GoRoute(
               path: '/activity',
               name: 'activity',

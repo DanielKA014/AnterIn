@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:go_router/go_router.dart';
 
 class NewPassPage extends StatelessWidget {
   const NewPassPage({super.key});
@@ -15,7 +15,11 @@ class NewPassPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+            Image.asset(
+              'assets/images/anterin-logo-vertical.png',
+              width: 200,
+              height: 200,
+            ),
             const SizedBox(height: 20),
             TextField(
               controller: passController,
@@ -34,11 +38,12 @@ class NewPassPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
-                  (route) => false,
-                );
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(builder: (_) => const LoginPage()),
+                //   (route) => false,
+                // );
+                context.goNamed('login');
               },
               child: const Text('Confirm'),
             ),
