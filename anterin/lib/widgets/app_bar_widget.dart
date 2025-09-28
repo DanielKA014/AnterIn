@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({super.key});
+  final bool isNested;
+  const AppBarWidget({super.key, required this.isNested});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color.fromARGB(255, 130, 255, 161),
-      foregroundColor: Colors.white,
+      leading: (isNested)
+          ? IconButton(
+              onPressed: () => context.pop(),
+              icon: Icon(Icons.arrow_back_ios_new_outlined),
+            )
+          : null,
       title: Image.asset(
         'assets/images/anterin-logo-horizontal.png',
         fit: BoxFit.contain,
