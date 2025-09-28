@@ -20,9 +20,8 @@ class ProviderButtonWidget extends StatelessWidget {
         onPressed: goRoute,
         child: Row(
           children: <Widget>[
-            // Icon(Icons.motorcycle_outlined),
             Icon(iconName),
-            SizedBox(width: 18),
+            const SizedBox(width: 18),
             Text(buttonTitle),
           ],
         ),

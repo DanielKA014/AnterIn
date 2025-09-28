@@ -29,7 +29,7 @@ class TabBarService extends StatelessWidget {
   }
 
   int _calculateIndex(BuildContext context) {
-    String endpoint = this.location;
+    String endpoint = location;
     switch (endpoint) {
       case '/home':
         return 0;
@@ -52,16 +52,25 @@ class TabBarService extends StatelessWidget {
       '/chat',
       '/profile',
     ];
+    final List<String> loginPaths = [
+      '/',
+      '/register',
+      '/mobile-number',
+      '/mobile-number/otp',
+      '/mobile-number/otp/new-pass',
+    ];
     if (screenWithNavBar.contains(location)) {
       return Scaffold(
-        appBar: AppBarWidget(),
-        body: this.child,
+        appBar: AppBarWidget(isNested: false),
+        body: child,
         bottomNavigationBar: TabBarWidget(
           tappedButton: (index) => _replaceScreen(context, index),
           currentIndex: _calculateIndex(context),
         ),
       );
+    } else if (loginPaths.contains(location)) {
+      return Scaffold(body: child);
     }
-    return Scaffold(body: this.child);
+    return Scaffold(appBar: AppBarWidget(isNested: true), body: child);
   }
 }

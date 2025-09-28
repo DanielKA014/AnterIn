@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
                 context.pushNamed('register');
               },
               child: const Text(
-                "Don’t have account? Register here\nTidak punya akun? Daftar disini",
+                "Don't have account? Register here\nTidak punya akun? Daftar disini",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.blue),
               ),

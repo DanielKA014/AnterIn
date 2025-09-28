@@ -1,5 +1,5 @@
 // import 'package:anterin/routes/main_router.dart';
-import 'package:anterin/widgets/financial_provider_widget.dart';
+import 'package:anterin/widgets/balance_info_widgets/financial_provider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/provider_button_widget.dart';
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               FinancialProviderWidget(), //   WIDGET SALDO
               ProviderButtonWidget(
@@ -31,7 +31,6 @@ class HomeScreen extends StatelessWidget {
                 buttonTitle: 'Titip Antar Barang',
                 iconName: Icons.inventory_2_outlined,
               ),
-              const SizedBox(height: 24),
             ],
           ),
         ),

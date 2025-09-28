@@ -1,5 +1,5 @@
-import 'package:anterin/widgets/balance_info_widget.dart';
-import 'package:anterin/widgets/financial_provider_button_widget.dart';
+import 'package:anterin/widgets/balance_info_widgets/balance_info_widget.dart';
+import 'package:anterin/widgets/balance_info_widgets/financial_provider_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,21 +28,25 @@ class FinancialProviderWidget extends StatelessWidget {
         child: SafeArea(
           child: Row(
             children: <Widget>[
-              Row(
-                children: [
-                  BalanceInfoWidget(),
-                  SizedBox(width: 64.0),
-                  FinancialProviderButtonWidget(
-                    goRoute: () => context.push('/home/pay/'),
-                    buttonCaption: 'Bayar',
-                    iconName: Icons.arrow_upward_outlined,
-                  ),
-                  FinancialProviderButtonWidget(
-                    goRoute: () => context.push('/home/topup/'),
-                    buttonCaption: 'Top Up',
-                    iconName: Icons.add,
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      constraints: BoxConstraints(minWidth: 208.0),
+                      child: BalanceInfoWidget(),
+                    ),
+                    FinancialProviderButtonWidget(
+                      goRoute: () => context.push('/home/pay/'),
+                      buttonCaption: 'Bayar',
+                      iconName: Icons.arrow_upward_outlined,
+                    ),
+                    FinancialProviderButtonWidget(
+                      goRoute: () => context.push('/home/top-up/'),
+                      buttonCaption: 'Top Up',
+                      iconName: Icons.add,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

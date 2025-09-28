@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'otp.dart';
+import 'package:go_router/go_router.dart';
 
 class MobileNumberPage extends StatelessWidget {
   const MobileNumberPage({super.key});
@@ -14,7 +14,11 @@ class MobileNumberPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+            Image.asset(
+              'assets/images/anterin-logo-vertical.png',
+              width: 200,
+              height: 200,
+            ),
             const SizedBox(height: 20),
             TextField(
               controller: controller,
@@ -26,10 +30,7 @@ class MobileNumberPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const OtpPage()),
-                );
+                context.pushNamed('otp');
               },
               child: const Text('Send OTP'),
             ),

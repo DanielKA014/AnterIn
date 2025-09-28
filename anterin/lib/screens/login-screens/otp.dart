@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'new_pass.dart';
+import 'package:go_router/go_router.dart';
 
 class OtpPage extends StatelessWidget {
   const OtpPage({super.key});
@@ -14,7 +14,11 @@ class OtpPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/anterin-logo-vertical.png', width: 200, height: 200),
+            Image.asset(
+              'assets/images/anterin-logo-vertical.png',
+              width: 200,
+              height: 200,
+            ),
             const SizedBox(height: 20),
             TextField(
               controller: otpController,
@@ -26,10 +30,11 @@ class OtpPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const NewPassPage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (_) => const NewPassPage()),
+                // );
+                context.pushNamed('new-pass');
               },
               child: const Text('Verify'),
             ),
