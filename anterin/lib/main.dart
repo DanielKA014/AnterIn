@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_router.dart';
+import 'package:anterin/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static final String title = 'User Profile';
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: _buildTheme(Brightness.light),
       routerConfig: _initializeRoute(),
+      title: title,
     );
   }
 }
@@ -26,6 +30,7 @@ GoRouter _initializeRoute() {
   return mainRouter;
 }
 
+
 ThemeData _buildTheme(Brightness brightness) {
   final ThemeData baseTheme = ThemeData(brightness: brightness);
 
@@ -35,4 +40,9 @@ ThemeData _buildTheme(Brightness brightness) {
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
   );
+
+
 }
+
+ 
+  
