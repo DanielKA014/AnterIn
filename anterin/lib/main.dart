@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_router.dart';
+import 'package:anterin/screens/activity_screen.dart';
+
+// Contoh class UserData untuk provider
+class UserData with ChangeNotifier {
+  // Tambahkan state dan method sesuai kebutuhan
+}
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (_) => UserData(), child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +40,7 @@ ThemeData _buildTheme(Brightness brightness) {
 
   return baseTheme.copyWith(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Color.fromARGB(255, 78, 236, 54),
+      seedColor: const Color.fromARGB(255, 78, 236, 54),
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
   );
