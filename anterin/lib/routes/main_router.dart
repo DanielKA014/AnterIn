@@ -2,6 +2,7 @@ import 'package:anterin/screens/login-screens/login.dart';
 import 'package:anterin/screens/login-screens/mobile_number.dart';
 import 'package:anterin/screens/login-screens/new_pass.dart';
 import 'package:anterin/screens/login-screens/otp.dart';
+import 'package:anterin/screens/profile/profile_screen.dart';
 import 'package:anterin/screens/login-screens/register.dart';
 import 'package:anterin/screens/top_up_payment_screen.dart';
 import 'package:anterin/screens/top_up_screen.dart';
@@ -147,7 +148,7 @@ class MainRouter {
               name: 'profile',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: Placeholder()),
+                  const NoTransitionPage(child: ProfilePage()),
             ),
           ],
         ),
