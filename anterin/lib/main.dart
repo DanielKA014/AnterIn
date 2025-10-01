@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: _buildTheme(Brightness.light),
       routerConfig: _initializeRoute(),
-      title: title,
     );
   }
 }
@@ -40,7 +39,7 @@ ThemeData _buildTheme(Brightness brightness) {
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
   );
-
+  
 
 }
 

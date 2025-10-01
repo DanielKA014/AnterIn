@@ -1,5 +1,6 @@
 import 'package:anterin/screens/login-screens/login.dart';
 import 'package:anterin/screens/login-screens/mobile_number.dart';
+import 'package:anterin/screens/profile/profile_screen.dart';
 import 'package:anterin/screens/login-screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -92,7 +93,7 @@ class MainRouter {
             GoRoute(
               path: '/profile',
               name: 'profile',
-              builder: (context, state) => const Placeholder(),
+              builder: (context, state) => const ProfilePage(),
             ),
           ],
         ),
