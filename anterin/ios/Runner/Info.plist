@@ -44,6 +44,25 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Aplikasi ini memerlukan akses lokasi untuk menunjukkan posisi Anda.</string>
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Aplikasi ini memerlukan akses lokasi untuk menunjukkan posisi Anda.</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Aplikasi ini memerlukan izin untuk akses foto.</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Aplikasi ini memerlukan kamera.</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Aplikasi ini memerlukan mikrofon.</string>
+
+	<key>NSContactsUsageDescription</key>
+	<string>Aplikasi ini memerlukan akses kontak.</string>
+
 	<true/>
 </dict>
 </plist>
