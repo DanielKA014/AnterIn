@@ -23,7 +23,6 @@ class TabBarWidget extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
       ],
       currentIndex: currentIndex,
-      selectedItemColor: Theme.of(context).primaryColor,
       onTap: tappedButton,
     );
   }
