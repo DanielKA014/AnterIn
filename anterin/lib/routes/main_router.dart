@@ -4,9 +4,15 @@ import 'package:anterin/screens/login-screens/new_pass.dart';
 import 'package:anterin/screens/login-screens/otp.dart';
 import 'package:anterin/screens/profile/profile_screen.dart';
 import 'package:anterin/screens/login-screens/register.dart';
-import 'package:anterin/screens/top_up_payment_screen.dart';
-import 'package:anterin/screens/top_up_screen.dart';
-import 'package:anterin/screens/top_up_success_screen.dart';
+import 'package:anterin/screens/ride-motor-screen/ride_input_screen.dart';
+import 'package:anterin/screens/ride-motor-screen/ride_map_screen.dart';
+import 'package:anterin/screens/ride-car-screen/ride_input_screen_car.dart';
+import 'package:anterin/screens/ride-car-screen/ride_map_screen_car.dart';
+import 'package:anterin/screens/telepon_screen.dart';
+import 'package:anterin/screens/message_screen.dart';
+import 'package:anterin/screens/top-up-screens/top_up_payment_screen.dart';
+import 'package:anterin/screens/top-up-screens/top_up_screen.dart';
+import 'package:anterin/screens/top-up-screens/top_up_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/home_screen.dart';
@@ -24,6 +30,26 @@ class MainRouter {
       navigatorKey: _rootNavigatorKey,
       initialLocation: '/',
       routes: [
+        GoRoute(
+          path: '/message',
+          name: 'message',
+          pageBuilder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>?;
+            final driverName = extra?['driverName'] ?? 'Driver';
+            return NoTransitionPage(child: ChatScreen(driverName: driverName));
+          },
+        ),
+        GoRoute(
+          path: '/telepon',
+          name: 'telepon',
+          pageBuilder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>?;
+            final driverName = extra?['driverName'] ?? 'Driver';
+            return NoTransitionPage(
+              child: TeleponScreen(driverName: driverName),
+            );
+          },
+        ),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
@@ -81,10 +107,26 @@ class MainRouter {
               path: '/home/motorcycle',
               name: 'motorcycle',
               parentNavigatorKey: _shellNavigatorKey,
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 print(state.uri.toString());
-                return const Placeholder();
+                return NoTransitionPage(child: RideInputScreen());
               },
+              routes: [
+                GoRoute(
+                  path: 'map',
+                  name: 'map',
+                  parentNavigatorKey: _shellNavigatorKey,
+                  pageBuilder: (context, state) {
+                    final extra = state.extra as Map<String, String>?;
+                    final from = extra?['from'] ?? 'Unknown From';
+                    final to = extra?['to'] ?? 'Unknown To';
+                    print(state.uri.toString());
+                    return NoTransitionPage(
+                      child: RideMapScreenMotor(from: from, to: to),
+                    );
+                  },
+                ),
+              ],
             ),
             GoRoute(
               path: '/home/delivery',
@@ -124,10 +166,26 @@ class MainRouter {
               path: '/home/car',
               name: 'car',
               parentNavigatorKey: _shellNavigatorKey,
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 print(state.uri.toString());
-                return const Placeholder();
+                return NoTransitionPage(child: RideInputScreenCar());
               },
+              routes: [
+                GoRoute(
+                  path: 'map',
+                  name: 'car-map',
+                  parentNavigatorKey: _shellNavigatorKey,
+                  pageBuilder: (context, state) {
+                    final extra = state.extra as Map<String, String>?;
+                    final from = extra?['from'] ?? 'Unknown From';
+                    final to = extra?['to'] ?? 'Unknown To';
+                    print(state.uri.toString());
+                    return NoTransitionPage(
+                      child: RideMapScreenCar(from: from, to: to),
+                    );
+                  },
+                ),
+              ],
             ),
             GoRoute(
               path: '/activity',
