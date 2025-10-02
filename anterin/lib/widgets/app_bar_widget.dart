@@ -19,6 +19,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         fit: BoxFit.contain,
         height: 72.0,
       ),
+      shadowColor: const Color.fromARGB(81, 0, 0, 0),
+      elevation: 4.0,
     );
   }
 
