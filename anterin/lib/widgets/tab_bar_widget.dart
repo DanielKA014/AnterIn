@@ -15,10 +15,7 @@ class TabBarWidget extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.history_rounded),
-          label: 'Aktivitas',
-        ),
+        BottomNavigationBarItem(icon: Icon(Icons.history_rounded), label: 'Aktivitas'),
         BottomNavigationBarItem(icon: Icon(Icons.chat_outlined), label: 'Chat'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
       ],

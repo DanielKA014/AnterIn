@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:anterin/models/user.dart';
 import 'package:anterin/utils/user_preferences.dart';
@@ -8,6 +7,8 @@ import 'package:anterin/widgets/profile_widget/numbers_widget.dart';
 import 'package:anterin/widgets/profile_widget/profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }

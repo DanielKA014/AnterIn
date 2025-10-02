@@ -1,7 +1,9 @@
+import 'package:anterin/screens/chat_screen.dart';
 import 'package:anterin/screens/login-screens/login.dart';
 import 'package:anterin/screens/login-screens/mobile_number.dart';
 import 'package:anterin/screens/login-screens/new_pass.dart';
 import 'package:anterin/screens/login-screens/otp.dart';
+import 'package:anterin/screens/profile/profile_screen.dart';
 import 'package:anterin/screens/login-screens/register.dart';
 import 'package:anterin/screens/ride-motor-screen/ride_input_screen.dart';
 import 'package:anterin/screens/ride-motor-screen/ride_map_screen.dart';
@@ -12,6 +14,8 @@ import 'package:anterin/screens/message_screen.dart';
 import 'package:anterin/screens/top-up-screens/top_up_payment_screen.dart';
 import 'package:anterin/screens/top-up-screens/top_up_screen.dart';
 import 'package:anterin/screens/top-up-screens/top_up_success_screen.dart';
+import 'package:anterin/screens/ride-delivery-screen/ride_input_delivery_screen.dart';
+import 'package:anterin/screens/ride-delivery-screen/ride_map_delivery_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/home_screen.dart';
@@ -35,7 +39,7 @@ class MainRouter {
           pageBuilder: (context, state) {
             final extra = state.extra as Map<String, dynamic>?;
             final driverName = extra?['driverName'] ?? 'Driver';
-            return NoTransitionPage(child: ChatScreen(driverName: driverName));
+            return NoTransitionPage(child: MessageScreen(driverName: driverName, initialMessages: []));
           },
         ),
         GoRoute(
@@ -113,7 +117,7 @@ class MainRouter {
               routes: [
                 GoRoute(
                   path: 'map',
-                  name: 'map',
+                  name: 'motorcycle-map',
                   parentNavigatorKey: _shellNavigatorKey,
                   pageBuilder: (context, state) {
                     final extra = state.extra as Map<String, String>?;
@@ -124,40 +128,6 @@ class MainRouter {
                       child: RideMapScreenMotor(from: from, to: to),
                     );
                   },
-                ),
-              ],
-            ),
-            GoRoute(
-              path: '/home/delivery',
-              name: 'delivery',
-              parentNavigatorKey: _shellNavigatorKey,
-              builder: (context, state) {
-                print(state.uri.toString());
-                return const Placeholder();
-              },
-            ),
-            GoRoute(
-              path: '/home/top-up',
-              name: 'topup',
-              parentNavigatorKey: _shellNavigatorKey,
-              pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: TopUpScreen()),
-              routes: [
-                GoRoute(
-                  path: 'payment',
-                  name: 'top-up-payment',
-                  parentNavigatorKey: _shellNavigatorKey,
-                  pageBuilder: (context, state) =>
-                      const NoTransitionPage(child: TopUpPaymentScreen()),
-                  routes: [
-                    GoRoute(
-                      path: 'success',
-                      name: 'top-up-success',
-                      parentNavigatorKey: _shellNavigatorKey,
-                      pageBuilder: (context, state) =>
-                          const NoTransitionPage(child: TopUpSuccessScreen()),
-                    ),
-                  ],
                 ),
               ],
             ),
@@ -187,6 +157,63 @@ class MainRouter {
               ],
             ),
             GoRoute(
+              path: '/home/delivery',
+              name: 'delivery',
+              parentNavigatorKey: _shellNavigatorKey,
+              pageBuilder: (context, state) {
+                print(state.uri.toString());
+                return NoTransitionPage(child: RideDeliveryScreen());
+              },
+              routes: [
+                GoRoute(
+                  path: 'map',
+                  name: 'delivery-map',
+                  parentNavigatorKey: _shellNavigatorKey,
+                  pageBuilder: (context, state) {
+                    final extra = state.extra as Map<String, dynamic>?;
+                    final from = extra?['from'] ?? 'Unknown From';
+                    final to = extra?['to'] ?? 'Unknown To';
+                    final weight = extra?['weight'] ?? 'N/A';
+                    final itemType = extra?['itemType'] ?? 'N/A';
+                    print(state.uri.toString());
+                    return NoTransitionPage(
+                      child: RideMapScreenDelivery(
+                        from: from,
+                        to: to,
+                        weight: weight,
+                        itemType: itemType,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            GoRoute(
+              path: '/home/top-up',
+              name: 'topup',
+              parentNavigatorKey: _shellNavigatorKey,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: TopUpScreen()),
+              routes: [
+                GoRoute(
+                  path: 'payment',
+                  name: 'top-up-payment',
+                  parentNavigatorKey: _shellNavigatorKey,
+                  pageBuilder: (context, state) =>
+                      const NoTransitionPage(child: TopUpPaymentScreen()),
+                  routes: [
+                    GoRoute(
+                      path: 'success',
+                      name: 'top-up-success',
+                      parentNavigatorKey: _shellNavigatorKey,
+                      pageBuilder: (context, state) =>
+                          const NoTransitionPage(child: TopUpSuccessScreen()),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            GoRoute(
               path: '/activity',
               name: 'activity',
               parentNavigatorKey: _shellNavigatorKey,
@@ -194,18 +221,34 @@ class MainRouter {
                   const NoTransitionPage(child: Placeholder()),
             ),
             GoRoute(
-              path: '/chat',
-              name: 'chat',
+              path: '/chat-list',
+              name: 'chat-list',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: Placeholder()),
+                  const NoTransitionPage(child: ChatListScreen()),
+            ),
+            GoRoute(
+              path: '/chat-detail',
+              name: 'chat-detail',
+              parentNavigatorKey: _shellNavigatorKey,
+              pageBuilder: (context, state) {
+                final extra = state.extra as Map<String, dynamic>;
+                final driverName = extra['driverName'] as String;
+                final initialMessages = extra['initialMessages'] as List<Map<String, String>>;
+                return NoTransitionPage(
+                  child: MessageScreen(
+                    driverName: driverName,
+                    initialMessages: initialMessages,
+                  ),
+                );
+              },
             ),
             GoRoute(
               path: '/profile',
               name: 'profile',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: Placeholder()),
+                  const NoTransitionPage(child: ProfilePage()),
             ),
           ],
         ),

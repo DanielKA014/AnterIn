@@ -1,21 +1,29 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:video_player/video_player.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:go_router/go_router.dart';
 import '../../widgets/driver_info_widget.dart';
 
-class RideMapScreenMotor extends StatefulWidget {
+class RideMapScreenDelivery extends StatefulWidget {
   final String from;
   final String to;
+  final String weight;
+  final String itemType;
 
-  const RideMapScreenMotor({super.key, required this.from, required this.to});
+  const RideMapScreenDelivery({
+    super.key,
+    required this.from,
+    required this.to,
+    required this.weight,
+    required this.itemType,
+  });
 
   @override
-  State<RideMapScreenMotor> createState() => _RideMapScreenMotorState();
+  State<RideMapScreenDelivery> createState() => _RideMapScreenDeliveryState();
 }
 
-class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
+class _RideMapScreenDeliveryState extends State<RideMapScreenDelivery> {
   late VideoPlayerController _controller1;
   late VideoPlayerController _controller2;
   String? randomDriverName;
@@ -69,10 +77,11 @@ class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
     _controller2.addListener(() {
       if (_controller2.value.position >= _controller2.value.duration) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Anda sudah sampai tujuan.')),
+          const SnackBar(content: Text('Barang Anda sudah sampai tujuan.')),
         );
       }
     });
+    
   }
 
   @override
@@ -106,37 +115,41 @@ class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox.expand(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                width: _controller1.value.isInitialized ? _controller1.value.size.width : 0,
-                height: _controller1.value.isInitialized ? _controller1.value.size.height : 0,
-                child: _isDriverArrived ? VideoPlayer(_controller2) : VideoPlayer(_controller1),
+          if (_controller1.value.isInitialized && _controller2.value.isInitialized)
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _controller1.value.size.width,
+                  height: _controller1.value.size.height,
+                  child: _isDriverArrived ? VideoPlayer(_controller2) : VideoPlayer(_controller1),
+                ),
               ),
-            ),
-          ),
+            )
+          else
+            const Center(child: CircularProgressIndicator()),
+          
           Align(
             alignment: Alignment.bottomCenter,
             child: DriverInfoWidget(
               driverName: randomDriverName ?? "Mencari Driver...",
               from: widget.from,
               to: widget.to,
-              onCall: () async {
+              onCall: () {
                 context.push(
                   '/telepon',
-                  extra: {
-                    'driverName': randomDriverName,
-                  },
+                  extra: {'driverName': randomDriverName},
                 );
               },
               onChat: () {
                 context.push(
-                  '/message',
+                  '/chat',
                   extra: {'driverName': randomDriverName},
                 );
               },
-              isDelivery: false,
+              isDelivery: true,
+              weight: widget.weight,
+              itemType: widget.itemType,
             ),
           ),
         ],
