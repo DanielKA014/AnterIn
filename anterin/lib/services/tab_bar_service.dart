@@ -35,7 +35,7 @@ class TabBarService extends StatelessWidget {
         return 0;
       case '/activity':
         return 1;
-      case '/chat':
+      case '/chat-list':
         return 2;
       case '/profile':
         return 3;
@@ -58,6 +58,7 @@ class TabBarService extends StatelessWidget {
       '/mobile-number',
       '/mobile-number/otp',
       '/mobile-number/otp/new-pass',
+      '/chat-detail',
     ];
     if (screenWithNavBar.contains(location)) {
       return Scaffold(
