@@ -63,18 +63,16 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
       }
     });
 
-    _controller2 =
-        VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
-          ..initialize().then((_) {
-            setState(() {});
-          })
-          ..setLooping(true); // Tambahkan ini agar video berulang
+    _controller2 = VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      },
+    );
 
-    _controller1.addListener(() {
-      if (_controller2.value.position >= _controller2.value.duration &&
-          !_isDriverArrived) {
+    _controller2.addListener(() {
+      if (_controller2.value.position >= _controller2.value.duration) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Driver sedang menuju ke lokasi Anda!')),
+          const SnackBar(content: Text('Anda sudah sampai tujuan.')),
         );
       }
     });
@@ -112,9 +110,7 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
     return Scaffold(
       body: Stack(
         children: [
-          // Video di lapisan paling belakang
           _videoPlayerWidget(),
-          // Driver Info Widget di lapisan atas
           Align(
             alignment: Alignment.bottomCenter,
             child: DriverInfoWidget(
@@ -126,7 +122,6 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
                   '/telepon',
                   extra: {
                     'driverName': randomDriverName,
-                    // 'driverImage': 'assets/images/driver-motor-image.jpg',
                   },
                 );
               },
@@ -136,6 +131,7 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
                   extra: {'driverName': randomDriverName},
                 );
               },
+              isDelivery: false,
             ),
           ),
         ],

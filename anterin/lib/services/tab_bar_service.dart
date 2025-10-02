@@ -19,7 +19,7 @@ class TabBarService extends StatelessWidget {
         context.goNamed('activity');
         break;
       case 2:
-        context.goNamed('chat');
+        context.goNamed('chat-list');
         break;
       case 3:
         context.goNamed('profile');
@@ -49,7 +49,7 @@ class TabBarService extends StatelessWidget {
     final List<String> screenWithNavBar = [
       '/home',
       '/activity',
-      '/chat',
+      '/chat-list',
       '/profile',
     ];
     final List<String> loginPaths = [
