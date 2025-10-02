@@ -28,10 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _simulateDriverResponse() {
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        _messages.add({
-          "sender": "driver",
-          "text": "Siap, saya OTW ke Anda."
-        });
+        _messages.add({"sender": "driver", "text": "Siap, saya OTW ke Anda."});
       });
       _scrollToBottom();
     });
@@ -57,10 +54,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.driverName),
-        backgroundColor: Colors.blueAccent,
-      ),
+      appBar: AppBar(title: Text(widget.driverName)),
       body: Column(
         children: [
           Expanded(
@@ -72,10 +66,14 @@ class _ChatScreenState extends State<ChatScreen> {
                 final message = _messages[index];
                 final isUser = message["sender"] == "user";
                 return Align(
-                  alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment: isUser
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
+                      horizontal: 15,
+                      vertical: 10,
+                    ),
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     decoration: BoxDecoration(
                       color: isUser ? Colors.blue[100] : Colors.grey[200],
@@ -107,13 +105,14 @@ class _ChatScreenState extends State<ChatScreen> {
               controller: _textController,
               onSubmitted: _handleSubmitted,
               decoration: const InputDecoration.collapsed(
-                  hintText: "Kirim pesan ke driver"),
+                hintText: "Kirim pesan ke driver",
+              ),
             ),
           ),
           IconButton(
             icon: const Icon(Icons.send),
             onPressed: () => _handleSubmitted(_textController.text),
-            color: Colors.blueAccent,
+            // color: Colors.blueAccent,
           ),
         ],
       ),

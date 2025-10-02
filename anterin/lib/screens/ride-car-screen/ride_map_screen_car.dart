@@ -41,16 +41,20 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
   }
 
   void _initializeVideoPlayers() {
-    _controller1 = VideoPlayerController.asset('assets/videos/driver_to_user.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-        _controller1.play();
-      });
+    _controller1 =
+        VideoPlayerController.asset('assets/videos/driver_to_user.mp4')
+          ..initialize().then((_) {
+            setState(() {});
+            _controller1.play();
+          });
 
     _controller1.addListener(() {
-      if (_controller1.value.position >= _controller1.value.duration && !_isDriverArrived) {
+      if (_controller1.value.position >= _controller1.value.duration &&
+          !_isDriverArrived) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Driver ${randomDriverName!} sudah tiba di lokasi!')),
+          SnackBar(
+            content: Text('Driver ${randomDriverName!} sudah tiba di lokasi!'),
+          ),
         );
         setState(() {
           _isDriverArrived = true;
@@ -59,16 +63,18 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
       }
     });
 
-    _controller2 = VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-      })
-      ..setLooping(true); // Tambahkan ini agar video berulang
+    _controller2 =
+        VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
+          ..initialize().then((_) {
+            setState(() {});
+          })
+          ..setLooping(true); // Tambahkan ini agar video berulang
 
     _controller1.addListener(() {
-      if (_controller2.value.position >= _controller2.value.duration && !_isDriverArrived) {
+      if (_controller2.value.position >= _controller2.value.duration &&
+          !_isDriverArrived) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Sudah Sampai Tujuan')),
+          SnackBar(content: Text('Driver sedang menuju ke lokasi Anda!')),
         );
       }
     });
@@ -84,17 +90,18 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
   Future<void> _requestCallPermission() async {
     final status = await Permission.phone.request();
     if (status.isGranted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Izin telepon diberikan.")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Izin telepon diberikan.")));
     } else if (status.isDenied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Izin telepon ditolak.")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Izin telepon ditolak.")));
     } else if (status.isPermanentlyDenied) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text("Izin telepon ditolak permanen. Buka pengaturan.")),
+          content: Text("Izin telepon ditolak permanen. Buka pengaturan."),
+        ),
       );
       openAppSettings();
     }
@@ -137,10 +144,9 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
   }
 
   Widget _videoPlayerWidget() {
-    if (!_controller1.value.isInitialized || !_controller2.value.isInitialized) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+    if (!_controller1.value.isInitialized ||
+        !_controller2.value.isInitialized) {
+      return const Center(child: CircularProgressIndicator());
     }
     return SizedBox.expand(
       child: FittedBox(
@@ -148,10 +154,11 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
         child: SizedBox(
           width: _controller1.value.size.width,
           height: _controller1.value.size.height,
-          child: _isDriverArrived ? VideoPlayer(_controller2) : VideoPlayer(_controller1),
+          child: _isDriverArrived
+              ? VideoPlayer(_controller2)
+              : VideoPlayer(_controller1),
         ),
       ),
     );
   }
 }
-
