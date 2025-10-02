@@ -29,7 +29,6 @@ GoRouter _initializeRoute() {
   return mainRouter;
 }
 
-
 ThemeData _buildTheme(Brightness brightness) {
   final ThemeData baseTheme = ThemeData(brightness: brightness);
 
@@ -38,10 +37,5 @@ ThemeData _buildTheme(Brightness brightness) {
       seedColor: Color.fromARGB(255, 78, 236, 54),
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
-  );
-  
-
+  ); 
 }
-
- 
-  
