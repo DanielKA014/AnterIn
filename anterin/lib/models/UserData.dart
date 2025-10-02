@@ -15,17 +15,18 @@ class Pesanan {
 }
 
 class UserData extends ChangeNotifier {
-  int saldo = 100000;
-  List<Pesanan> riwayatPesanan = [];
+  int saldo = 100000; // saldo pengguna
+  List<Pesanan> riwayatPesanan = []; // riwayat pesanan
 
+  // Fungsi untuk memesan layanan
   void pesanLayanan(String jenis, int harga) {
     if (saldo >= harga) {
-      saldo -= harga;
+      saldo -= harga; // mengurangi saldo
       riwayatPesanan.insert(
-        0,
+        0, // menambahkan pesanan di awal list
         Pesanan(jenisLayanan: jenis, waktuPesan: DateTime.now(), harga: harga),
       );
-      notifyListeners();
+      notifyListeners(); // memberi tahu widget untuk rebuild
     } else {
       throw Exception("Saldo tidak cukup");
     }
@@ -33,6 +34,8 @@ class UserData extends ChangeNotifier {
 }
 
 class AktivitasScreen extends StatelessWidget {
+  const AktivitasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

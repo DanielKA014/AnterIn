@@ -24,27 +24,31 @@ class MyApp extends StatelessWidget {
       title: title,
     );
   }
+
+  // Inisialisasi router menggunakan GoRouter
+  GoRouter _initializeRoute() {
+    final MainRouter mainRoute = MainRouter();
+    GoRouter mainRouter = mainRoute.mainRouter();
+
+    return mainRouter;
+  }
+
+  // Tema aplikasi yang menggunakan Google Fonts
+  ThemeData _buildTheme(Brightness brightness) {
+    final ThemeData baseTheme = ThemeData(brightness: brightness);
+
+    return baseTheme.copyWith(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color.fromARGB(
+          255,
+          78,
+          236,
+          54,
+        ), // Gunakan warna primer
+      ),
+      textTheme: GoogleFonts.latoTextTheme(
+        baseTheme.textTheme,
+      ), // Menggunakan Lato font
+    );
+  }
 }
-
-GoRouter _initializeRoute() {
-  final MainRouter mainRoute = MainRouter();
-  GoRouter mainRouter = mainRoute.mainRouter();
-  return mainRouter;
-}
-
-
-ThemeData _buildTheme(Brightness brightness) {
-  final ThemeData baseTheme = ThemeData(brightness: brightness);
-
-  return baseTheme.copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color.fromARGB(255, 78, 236, 54),
-    ),
-    textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
-  );
-
-
-}
-
- 
-  

@@ -3,27 +3,50 @@ import 'package:provider/provider.dart';
 import 'package:anterin/models/UserData.dart';
 
 class ActivityScreen extends StatelessWidget {
+  const ActivityScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final userData = Provider.of<UserData>(context);
-
     return Scaffold(
       appBar: AppBar(title: Text("Aktivitas")),
-      body: userData.riwayatPesanan.isEmpty
-          ? Center(child: Text("Belum ada aktivitas"))
-          : ListView.builder(
-              itemCount: userData.riwayatPesanan.length,
-              itemBuilder: (context, index) {
-                final pesanan = userData.riwayatPesanan[index];
-                return ListTile(
-                  leading: _getIconPesanan(pesanan.jenisLayanan),
-                  title: Text(pesanan.jenisLayanan),
-                  subtitle: Text(
-                    "Harga: Rp ${pesanan.harga} - ${pesanan.waktuPesan.toLocal()}",
-                  ),
-                );
-              },
-            ),
+      body: Consumer<UserData>(
+        builder: (context, userData, child) {
+          if (userData.riwayatPesanan.isEmpty) {
+            return Center(child: Text("Belum ada aktivitas"));
+          }
+          return ListView.builder(
+            itemCount: userData.riwayatPesanan.length,
+            itemBuilder: (context, index) {
+              final pesanan = userData.riwayatPesanan[index];
+              return ListTile(
+                leading: _getIconPesanan(pesanan.jenisLayanan),
+                title: Text(pesanan.jenisLayanan),
+                subtitle: Text(
+                  "Harga: Rp ${pesanan.harga} - ${pesanan.waktuPesan.toLocal()}",
+                ),
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Tambahkan pesanan baru dengan contoh data
+          try {
+            Provider.of<UserData>(
+              context,
+              listen: false,
+            ).pesanLayanan("Nebeng Motor", 20000);
+          } catch (e) {
+            // Tampilkan pesan jika saldo tidak cukup
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(e.toString())));
+          }
+        },
+        tooltip: 'Tambah Pesanan',
+        child: Icon(Icons.add),
+      ),
     );
   }
 
