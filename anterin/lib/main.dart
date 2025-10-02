@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_router.dart';
-import 'package:anterin/screens/activity_screen.dart';
-
-// Contoh class UserData untuk provider
-class UserData with ChangeNotifier {
-  // Tambahkan state dan method sesuai kebutuhan
-}
+import 'package:provider/provider.dart';
+import 'package:anterin/models/UserData.dart';
 
 void main() {
   runApp(
@@ -18,6 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static final String title = 'User Profile';
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: _buildTheme(Brightness.light),
       routerConfig: _initializeRoute(),
+      title: title,
     );
   }
 }
@@ -35,6 +32,7 @@ GoRouter _initializeRoute() {
   return mainRouter;
 }
 
+
 ThemeData _buildTheme(Brightness brightness) {
   final ThemeData baseTheme = ThemeData(brightness: brightness);
 
@@ -44,4 +42,9 @@ ThemeData _buildTheme(Brightness brightness) {
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
   );
+
+
 }
+
+ 
+  
