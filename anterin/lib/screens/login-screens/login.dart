@@ -1,8 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _numController = TextEditingController();
+  final _passController = TextEditingController();
+  bool _validate = false;
+  bool _isPressed = false;
+
+  void _checkText() {
+    _isPressed = true;
+    setState(() {
+      _validate =
+          (_numController.text.isNotEmpty && _passController.text.isNotEmpty);
+    });
+
+    if (_validate) {
+      context.goNamed('home');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _passController.clear();
+      _numController.clear();
+    });
+  }
+
+  @override
+  void dispose() {
+    _passController.dispose();
+    _numController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +57,26 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
-              decoration: const InputDecoration(
+              controller: _numController,
+              decoration: InputDecoration(
                 labelText: 'Your Number / Nomor Hp Anda',
+                errorText: !_validate && _isPressed
+                    ? 'Nomor tidak boleh kosong!'
+                    : null,
               ),
             ),
             TextField(
-              obscureText: true,
-              decoration: const InputDecoration(
+              controller: _passController,
+              decoration: InputDecoration(
                 labelText: 'Password / Kata Sandi',
+                errorText: !_validate && _isPressed
+                    ? 'Kata sandi tidak boleh kosong!'
+                    : null,
               ),
             ),
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   // MaterialPageRoute(builder: (_) => const MobileNumberPage()),
-                //   '/login/mobile-number/',
-                // );
                 context.pushNamed('mobile-number');
               },
               child: const Align(
@@ -48,25 +88,10 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // langsung ke home aja, belum ada backend proper
-                // Navigator.of(context).pushAndRemoveUntil(
-                //   MaterialPageRoute(builder: (_) => const HomeScreen()),
-                //   ModalRoute.withName('/'),
-                // );
-                context.goNamed('home');
-              },
-              child: const Text('Login'),
-            ),
+            ElevatedButton(onPressed: _checkText, child: const Text('Login')),
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   // MaterialPageRoute(builder: (_) => const RegisterPage()),
-                //   '/register',
-                // );
                 context.pushNamed('register');
               },
               child: const Text(
