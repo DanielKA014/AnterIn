@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_router.dart';
 import 'package:provider/provider.dart';
 import 'package:anterin/models/UserData.dart';
+import 'package:anterin/screens/activity_screen.dart';
 
 void main() {
   runApp(
