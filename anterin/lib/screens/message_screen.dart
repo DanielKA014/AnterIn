@@ -1,19 +1,30 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class ChatScreen extends StatefulWidget {
+class MessageScreen extends StatefulWidget {
   final String driverName;
+  final List<Map<String, String>> initialMessages;
 
-  const ChatScreen({super.key, required this.driverName});
+  const MessageScreen({
+    super.key,
+    required this.driverName,
+    required this.initialMessages,
+  });
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  State<MessageScreen> createState() => _MessageScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _MessageScreenState extends State<MessageScreen> {
   final TextEditingController _textController = TextEditingController();
   final List<Map<String, String>> _messages = [];
   final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _messages.addAll(widget.initialMessages);
+  }
 
   void _handleSubmitted(String text) {
     if (text.isEmpty) return;
@@ -22,16 +33,24 @@ class _ChatScreenState extends State<ChatScreen> {
       _messages.add({"sender": "user", "text": text});
     });
     _scrollToBottom();
-    _simulateDriverResponse();
+    _simulateDriverResponse(text);
   }
 
-  void _simulateDriverResponse() {
+  void _simulateDriverResponse(String userMessage) {
+    String response;
+    if (userMessage.toLowerCase().contains("halo") || userMessage.toLowerCase().contains("hi")) {
+      response = "Halo juga! Ada yang bisa saya bantu?";
+    } else if (userMessage.toLowerCase().contains("dimana")) {
+      response = "Saya sedang dalam perjalanan, sebentar lagi sampai.";
+    } else if (userMessage.toLowerCase().contains("terima kasih")) {
+      response = "Sama-sama, hati-hati di jalan ya!";
+    } else {
+      response = "Oke, saya terima pesannya.";
+    }
+
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        _messages.add({
-          "sender": "driver",
-          "text": "Siap, saya OTW ke Anda."
-        });
+        _messages.add({"sender": "driver", "text": response});
       });
       _scrollToBottom();
     });
@@ -39,11 +58,13 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 
@@ -74,8 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 return Align(
                   alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     margin: const EdgeInsets.symmetric(vertical: 4),
                     decoration: BoxDecoration(
                       color: isUser ? Colors.blue[100] : Colors.grey[200],
@@ -107,7 +127,7 @@ class _ChatScreenState extends State<ChatScreen> {
               controller: _textController,
               onSubmitted: _handleSubmitted,
               decoration: const InputDecoration.collapsed(
-                  hintText: "Kirim pesan ke driver"),
+                  hintText: "Kirim pesan"),
             ),
           ),
           IconButton(

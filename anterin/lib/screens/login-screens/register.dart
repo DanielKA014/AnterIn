@@ -52,10 +52,6 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (_) => const LoginPage()),
-                  // );
                   context.goNamed('login');
                 },
                 child: const Text('Register / Daftar'),
@@ -63,10 +59,6 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (_) => const LoginPage()),
-                  // );
                   context.goNamed('login');
                 },
                 child: const Text(
