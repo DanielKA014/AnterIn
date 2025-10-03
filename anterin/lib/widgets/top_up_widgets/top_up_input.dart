@@ -27,8 +27,6 @@ class _TopUpTextFieldState extends State<TopUpTextField> {
 
   void _saveForm() {
     final isValid = _formKey.currentState!.validate();
-    print(_formValue);
-    print(isValid);
     if (!isValid) {
       return;
     }
@@ -114,71 +112,77 @@ class _TopUpTextFieldState extends State<TopUpTextField> {
     BalanceService format = BalanceService();
     final nominalAmount = int.tryParse(nominalController.text) ?? 0;
     int fee = nominalAmount + 2000;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Form(
-          key: _formKey,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.90,
-            height: MediaQuery.of(context).size.height * 0.10,
-            child: TextFormField(
-              validator: _validationMessage,
-              controller: nominalController,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 32.0,
-                  horizontal: 12.0,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Form(
+            key: _formKey,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.90,
+              height: MediaQuery.of(context).size.height * 0.10,
+              child: TextFormField(
+                validator: _validationMessage,
+                controller: nominalController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 24.0,
+                    horizontal: 12.0,
+                  ),
+                  border: InputBorder.none,
+                  errorMaxLines: 1,
+                  hintText: "Rp",
+                  filled: true,
+                  fillColor: const Color.fromARGB(44, 158, 158, 158),
                 ),
-                border: InputBorder.none,
-                hintText: "Rp",
-                filled: true,
-                fillColor: const Color.fromARGB(44, 158, 158, 158),
+                onChanged: (text) => {
+                  setState(() => _formValue = text),
+                  _formKey.currentState?.validate(),
+                },
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
               ),
-              onChanged: (text) => setState(() => _formValue = text),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.08,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Biaya Admin : Rp2.000'),
+                (fee < 12000)
+                    ? Text('Total Biaya    : Rp-')
+                    : Text('Total Biaya    : Rp${format.digitsFormater(fee)}'),
               ],
             ),
           ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.08,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Biaya Admin : Rp2.000'),
-              (fee < 12000)
-                  ? Text('Total Biaya    : Rp-')
-                  : Text('Total Biaya    : Rp${format.digitsFormater(fee)}'),
-            ],
-          ),
-        ),
-        Divider(),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 16.0),
-          child: const Text(
-            'Atau Pilih Nominal Top Up',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-          ),
-        ),
-        buttonChoices(),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.3),
-        Align(
-          alignment: AlignmentGeometry.bottomCenter,
-          child: ElevatedButton(
-            onPressed: _saveForm,
-            style: ButtonStyle(
-              minimumSize: WidgetStatePropertyAll(
-                Size(MediaQuery.of(context).size.width * 0.4, 52.0),
-              ),
+          Divider(),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 16.0),
+            child: const Text(
+              'Atau Pilih Nominal Top Up',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
-            child: const Text('Lanjutkan', style: TextStyle(fontSize: 18.0)),
           ),
-        ),
-      ],
+          buttonChoices(),
+          Align(
+            alignment: AlignmentGeometry.bottomCenter,
+            child: ElevatedButton(
+              onPressed: _saveForm,
+              style: ButtonStyle(
+                minimumSize: WidgetStatePropertyAll(
+                  Size(MediaQuery.of(context).size.width * 0.4, 52.0),
+                ),
+              ),
+              child: const Text('Lanjutkan', style: TextStyle(fontSize: 18.0)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

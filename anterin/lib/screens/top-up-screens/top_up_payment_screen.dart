@@ -8,18 +8,20 @@ class TopUpPaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.all(16.0),
-          child: Column(
-            spacing: 16.0,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const Text(
-                'Masukkan Nominal Top Up',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-              ),
-              TopUpTextField(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(16.0),
+            child: Column(
+              spacing: 16.0,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text(
+                  'Masukkan Nominal Top Up',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                TopUpTextField(),
+              ],
+            ),
           ),
         ),
       ),

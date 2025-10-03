@@ -6,18 +6,23 @@ class PromoSliderWidget extends StatelessWidget {
 
   // List nama file gambar
   List<String> get imageList => [
-        'assets/images/promo/promo-image1.jpg',
-        'assets/images/promo/promo-image2.jpg',
-        'assets/images/promo/promo-image3.jpg',
-        'assets/images/promo/promo-image4.jpg',
-        'assets/images/promo/promo-image5.jpg',
-        'assets/images/promo/promo-image6.jpg',
-      ];
+    'assets/images/promo/promo-image.jpg',
+    'assets/images/promo/promo-image2.jpg',
+    'assets/images/promo/promo-image3.jpg',
+    'assets/images/promo/promo-image4.jpg',
+    'assets/images/promo/promo-image5.jpg',
+  ];
 
   ClipRRect _buildImage(String imagePath) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.0),
-      child: Image.asset(imagePath, fit: BoxFit.cover),
+      child: Image.asset(
+        imagePath,
+        fit: BoxFit.cover,
+        height: 160.0,
+        width: double.infinity,
+        cacheWidth: 540,
+      ),
     );
   }
 
@@ -34,9 +39,7 @@ class PromoSliderWidget extends StatelessWidget {
           enlargeFactor: 0.2,
           autoPlayInterval: const Duration(milliseconds: 2800),
         ),
-        items: imageList
-            .map((imagePath) => _buildImage(imagePath))
-            .toList(),
+        items: imageList.map((imagePath) => _buildImage(imagePath)).toList(),
       ),
     );
   }
