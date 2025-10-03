@@ -38,11 +38,6 @@ class NewPassPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(builder: (_) => const LoginPage()),
-                //   (route) => false,
-                // );
                 context.goNamed('login');
               },
               child: const Text('Confirm'),
