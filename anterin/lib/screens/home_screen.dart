@@ -1,4 +1,4 @@
-// import 'package:anterin/routes/main_router.dart';
+import 'package:anterin/routes/main_router.dart';
 import 'package:anterin/widgets/balance_info_widgets/financial_provider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
