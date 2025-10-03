@@ -3,8 +3,8 @@ import 'package:anterin/models/user.dart';
 import 'package:anterin/utils/user_preferences.dart';
 import 'package:anterin/widgets/profile_widget/appbar_widget.dart';
 import 'package:anterin/widgets/profile_widget/button_widget.dart';
-import 'package:anterin/widgets/profile_widget/numbers_widget.dart';
 import 'package:anterin/widgets/profile_widget/profile_widget.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -30,9 +30,8 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 24),
           buildName(user),
           const SizedBox(height: 24),
-          Center(child: buildUpgradeButton()),
+          Center(child: buildUpdateButton()),
           const SizedBox(height: 24),
-          NumbersWidget(),
           const SizedBox(height: 48),
           buildAbout(user),
         ],
@@ -54,9 +53,10 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       );
 
-  Widget buildUpgradeButton() => ButtonWidget(
-        text: 'Upgrade To PRO',
-        onClicked: () {},
+  Widget buildUpdateButton() => ButtonWidget(
+        text: 'Update Button',
+        onClicked: () {
+        },
       );
 
   Widget buildAbout(User user) => Container(

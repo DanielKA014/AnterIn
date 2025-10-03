@@ -5,7 +5,8 @@ class UserPreferences {
     imagePath:
         'assets/images/profile/profile_pic',
     name: 'Sean Delicious',
-    email: 'sarah.abs@gmail.com',
+    email: 'seansantaclaus@gmail.com',
+    no: '+62 895-0300-3601',
     about:
         'Aku kok bisa ganteng banget sih',
   );
