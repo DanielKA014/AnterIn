@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:video_player/video_player.dart';
-import 'package:permission_handler/permission_handler.dart';
+// import 'package:permission_handler/permission_handler.dart';
 import '../../widgets/driver_info_widget.dart';
 
 class RideMapScreenCar extends StatefulWidget {
@@ -63,11 +63,11 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
       }
     });
 
-    _controller2 = VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-      },
-    );
+    _controller2 =
+        VideoPlayerController.asset('assets/videos/user_to_destination.mp4')
+          ..initialize().then((_) {
+            setState(() {});
+          });
 
     _controller2.addListener(() {
       if (_controller2.value.position >= _controller2.value.duration) {
@@ -85,25 +85,24 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
     super.dispose();
   }
 
-  Future<void> _requestCallPermission() async {
-    final status = await Permission.phone.request();
-    if (status.isGranted) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Izin telepon diberikan.")));
-    } else if (status.isDenied) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Izin telepon ditolak.")));
-    } else if (status.isPermanentlyDenied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Izin telepon ditolak permanen. Buka pengaturan."),
-        ),
-      );
-      openAppSettings();
-    }
-  }
+  // Future<void> _requestCallPermission() async {
+  //   final status = await Permission.phone.request();
+  //   if (status.isGranted) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Izin telepon diberikan.")),
+  //     );
+  //   } else if (status.isDenied) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text("Izin telepon ditolak.")),
+  //     );
+  //   } else if (status.isPermanentlyDenied) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //           content: Text("Izin telepon ditolak permanen. Buka pengaturan.")),
+  //     );
+  //     openAppSettings();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +119,7 @@ class _RideMapScreenCarState extends State<RideMapScreenCar> {
               onCall: () async {
                 context.push(
                   '/telepon',
-                  extra: {
-                    'driverName': randomDriverName,
-                  },
+                  extra: {'driverName': randomDriverName},
                 );
               },
               onChat: () {

@@ -16,6 +16,7 @@ import 'package:anterin/screens/top-up-screens/top_up_screen.dart';
 import 'package:anterin/screens/top-up-screens/top_up_success_screen.dart';
 import 'package:anterin/screens/ride-delivery-screen/ride_input_delivery_screen.dart';
 import 'package:anterin/screens/ride-delivery-screen/ride_map_delivery_screen.dart';
+import 'package:anterin/screens/history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/home_screen.dart';
@@ -39,7 +40,9 @@ class MainRouter {
           pageBuilder: (context, state) {
             final extra = state.extra as Map<String, dynamic>?;
             final driverName = extra?['driverName'] ?? 'Driver';
-            return NoTransitionPage(child: MessageScreen(driverName: driverName, initialMessages: []));
+            return NoTransitionPage(
+              child: MessageScreen(driverName: driverName, initialMessages: []),
+            );
           },
         ),
         GoRoute(
@@ -218,7 +221,7 @@ class MainRouter {
               name: 'activity',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: Placeholder()),
+                  const NoTransitionPage(child: HistoryScreen()),
             ),
             GoRoute(
               path: '/chat-list',
@@ -234,7 +237,8 @@ class MainRouter {
               pageBuilder: (context, state) {
                 final extra = state.extra as Map<String, dynamic>;
                 final driverName = extra['driverName'] as String;
-                final initialMessages = extra['initialMessages'] as List<Map<String, String>>;
+                final initialMessages =
+                    extra['initialMessages'] as List<Map<String, String>>;
                 return NoTransitionPage(
                   child: MessageScreen(
                     driverName: driverName,

@@ -31,18 +31,29 @@ class DriverInfoWidget extends StatelessWidget {
         Row(
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/driver-motor-image.jpg"),
+              backgroundImage: AssetImage(
+                "assets/images/driver-motor-image.jpg",
+              ),
               radius: 30,
             ),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
                 driverName,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            IconButton(onPressed: onCall, icon: const Icon(Icons.call, color: Colors.blueAccent)),
-            IconButton(onPressed: onChat, icon: const Icon(Icons.chat, color: Colors.green)),
+            IconButton(
+              onPressed: onCall,
+              icon: const Icon(Icons.call, color: Colors.blueAccent),
+            ),
+            IconButton(
+              onPressed: onChat,
+              icon: const Icon(Icons.chat, color: Colors.green),
+            ),
           ],
         ),
         const Divider(),
@@ -79,7 +90,10 @@ class DriverInfoWidget extends StatelessWidget {
             children: [
               const Icon(Icons.line_weight, color: Colors.grey),
               const SizedBox(width: 8),
-              Text("Berat Barang: $weight kg", style: const TextStyle(fontSize: 16)),
+              Text(
+                "Berat Barang: $weight kg",
+                style: const TextStyle(fontSize: 16),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -87,10 +101,13 @@ class DriverInfoWidget extends StatelessWidget {
             children: [
               const Icon(Icons.category, color: Colors.grey),
               const SizedBox(width: 8),
-              Text("Jenis Barang: $itemType", style: const TextStyle(fontSize: 16)),
+              Text(
+                "Jenis Barang: $itemType",
+                style: const TextStyle(fontSize: 16),
+              ),
             ],
           ),
-        ]
+        ],
       ],
     );
 

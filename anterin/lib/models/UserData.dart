@@ -1,9 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:anterin/models/UserData.dart';
 
-class ActivityScreen extends StatelessWidget {
-  const ActivityScreen({super.key});
+// Definisikan kelas Pesanan
+class Pesanan {
+  final String jenisLayanan;
+  final DateTime waktuPesan;
+  final int harga;
+
+  Pesanan({
+    required this.jenisLayanan,
+    required this.waktuPesan,
+    required this.harga,
+  });
+}
+
+class UserData extends ChangeNotifier {
+  int saldo = 100000; // saldo pengguna
+  List<Pesanan> riwayatPesanan = []; // riwayat pesanan
+
+  // Fungsi untuk memesan layanan
+  void pesanLayanan(String jenis, int harga) {
+    if (saldo >= harga) {
+      saldo -= harga; // mengurangi saldo
+      riwayatPesanan.insert(
+        0, // menambahkan pesanan di awal list
+        Pesanan(jenisLayanan: jenis, waktuPesan: DateTime.now(), harga: harga),
+      );
+      notifyListeners(); // memberi tahu widget untuk rebuild
+    } else {
+      throw Exception("Saldo tidak cukup");
+    }
+  }
+}
+
+class AktivitasScreen extends StatelessWidget {
+  const AktivitasScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +59,6 @@ class ActivityScreen extends StatelessWidget {
             },
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Tambahkan pesanan baru dengan contoh data
-          try {
-            Provider.of<UserData>(
-              context,
-              listen: false,
-            ).pesanLayanan("Nebeng Motor", 20000);
-          } catch (e) {
-            // Tampilkan pesan jika saldo tidak cukup
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(e.toString())));
-          }
-        },
-        tooltip: 'Tambah Pesanan',
-        child: Icon(Icons.add),
       ),
     );
   }

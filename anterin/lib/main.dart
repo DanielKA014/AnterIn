@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_router.dart';
-import 'package:anterin/screens/profile/profile_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:anterin/models/UserData.dart';
+// import 'package:anterin/screens/activity_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (_) => UserData(), child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -37,5 +40,5 @@ ThemeData _buildTheme(Brightness brightness) {
       seedColor: Color.fromARGB(255, 78, 236, 54),
     ),
     textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
-  ); 
+  );
 }
