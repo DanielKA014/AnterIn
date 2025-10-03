@@ -43,8 +43,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView( 
-        child: SafeArea( 
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -64,6 +64,9 @@ class _LoginPageState extends State<LoginPage> {
                         ? 'Nomor tidak boleh kosong!'
                         : null,
                   ),
+                  onChanged: (text) => setState(() {
+                    _isPressed = false;
+                  }),
                 ),
                 TextField(
                   controller: _passController,
@@ -73,6 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                         ? 'Kata sandi tidak boleh kosong!'
                         : null,
                   ),
+                  onChanged: (text) => setState(() {
+                    _isPressed = false;
+                  }),
                 ),
                 const SizedBox(height: 10),
                 GestureDetector(
@@ -88,7 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(onPressed: _checkText, child: const Text('Login')),
+                ElevatedButton(
+                  onPressed: _checkText,
+                  child: const Text('Login'),
+                ),
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {

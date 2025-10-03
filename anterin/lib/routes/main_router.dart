@@ -60,7 +60,6 @@ class MainRouter {
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
             final location = state.uri.toString();
-            print(location);
             return TabBarService(location: location, child: child);
           },
           routes: [
@@ -114,7 +113,6 @@ class MainRouter {
               name: 'motorcycle',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) {
-                print(state.uri.toString());
                 return NoTransitionPage(child: RideInputScreen());
               },
               routes: [
@@ -126,7 +124,6 @@ class MainRouter {
                     final extra = state.extra as Map<String, String>?;
                     final from = extra?['from'] ?? 'Unknown From';
                     final to = extra?['to'] ?? 'Unknown To';
-                    print(state.uri.toString());
                     return NoTransitionPage(
                       child: RideMapScreenMotor(from: from, to: to),
                     );
@@ -139,7 +136,6 @@ class MainRouter {
               name: 'car',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) {
-                print(state.uri.toString());
                 return NoTransitionPage(child: RideInputScreenCar());
               },
               routes: [
@@ -151,7 +147,6 @@ class MainRouter {
                     final extra = state.extra as Map<String, String>?;
                     final from = extra?['from'] ?? 'Unknown From';
                     final to = extra?['to'] ?? 'Unknown To';
-                    print(state.uri.toString());
                     return NoTransitionPage(
                       child: RideMapScreenCar(from: from, to: to),
                     );
@@ -164,7 +159,6 @@ class MainRouter {
               name: 'delivery',
               parentNavigatorKey: _shellNavigatorKey,
               pageBuilder: (context, state) {
-                print(state.uri.toString());
                 return NoTransitionPage(child: RideDeliveryScreen());
               },
               routes: [
@@ -178,7 +172,6 @@ class MainRouter {
                     final to = extra?['to'] ?? 'Unknown To';
                     final weight = extra?['weight'] ?? 'N/A';
                     final itemType = extra?['itemType'] ?? 'N/A';
-                    print(state.uri.toString());
                     return NoTransitionPage(
                       child: RideMapScreenDelivery(
                         from: from,

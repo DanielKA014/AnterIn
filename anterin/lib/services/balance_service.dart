@@ -23,9 +23,6 @@ class BalanceService {
     _currentBalance.value =
         (prefs.getInt('current-balance') ?? 0) + _topUpValue;
     prefs.setInt('current-balance', _currentBalance.value);
-
-    print('saldo balance');
-    print(prefs.getInt('current-balance'));
   }
 
   Future<void> _loadBalance() async {
