@@ -68,6 +68,14 @@ class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
           ..initialize().then((_) {
             setState(() {});
           });
+
+    _controller2.addListener(() {
+      if (_controller2.value.position >= _controller2.value.duration) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Anda sudah sampai tujuan.')),
+        );
+      }
+    });
   }
 
   @override
@@ -126,10 +134,7 @@ class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
               onCall: () async {
                 context.push(
                   '/telepon',
-                  extra: {
-                    'driverName': randomDriverName,
-                    // 'driverImage': 'assets/images/driver-motor-image.jpg',
-                  },
+                  extra: {'driverName': randomDriverName},
                 );
               },
               onChat: () {
@@ -138,6 +143,7 @@ class _RideMapScreenMotorState extends State<RideMapScreenMotor> {
                   extra: {'driverName': randomDriverName},
                 );
               },
+              isDelivery: false,
             ),
           ),
         ],
