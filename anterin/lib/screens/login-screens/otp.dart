@@ -15,7 +15,7 @@ class _OtpPageState extends State<OtpPage> {
   bool _isPressed = false;
 
   final Random _random = Random();
-
+  // ASTAGA EMANG BENER2 PECINTA FURINA BELIAU INI
   String _currentOtp =
       '131006'; // haha mas vincent otp tetap gw set default 131006
   // gw ambil ref dari https://www.geeksforgeeks.org/flutter/flutter-make-a-random-number-generator-app/
