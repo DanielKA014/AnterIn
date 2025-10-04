@@ -15,9 +15,15 @@ class ChatListScreen extends StatelessWidget {
             'assets/images/driver-motor-image.jpg',
             'Terima kasih, hati-hati di jalan ya!',
             [
-              {"sender": "driver", "text": "Baik, sama-sama. Hati-hati di jalan ya!"},
+              {
+                "sender": "driver",
+                "text": "Baik, sama-sama. Hati-hati di jalan ya!",
+              },
               {"sender": "user", "text": "Iya, terima kasih!"},
-              {"sender": "driver", "text": "Sip, sampai tujuan dengan selamat!"}
+              {
+                "sender": "driver",
+                "text": "Sip, sampai tujuan dengan selamat!",
+              },
             ],
           ),
           _buildChatListItem(
@@ -39,7 +45,10 @@ class ChatListScreen extends StatelessWidget {
             [
               {"sender": "driver", "text": "Halo, paket sudah saya terima ya."},
               {"sender": "user", "text": "Baik, terima kasih!"},
-              {"sender": "driver", "text": "Sama-sama. Saya akan segera menuju lokasi."},
+              {
+                "sender": "driver",
+                "text": "Sama-sama. Saya akan segera menuju lokasi.",
+              },
             ],
           ),
         ],
@@ -55,18 +64,13 @@ class ChatListScreen extends StatelessWidget {
     List<Map<String, String>> initialMessages,
   ) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(imagePath),
-      ),
+      leading: CircleAvatar(backgroundImage: AssetImage(imagePath)),
       title: Text(driverName),
       subtitle: Text(lastMessage, overflow: TextOverflow.ellipsis),
       onTap: () {
         context.push(
           '/chat-detail',
-          extra: {
-            'driverName': driverName,
-            'initialMessages': initialMessages,
-          },
+          extra: {'driverName': driverName, 'initialMessages': initialMessages},
         );
       },
     );

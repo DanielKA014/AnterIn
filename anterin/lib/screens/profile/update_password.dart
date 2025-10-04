@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class UpdateProfile extends StatelessWidget {
-  const UpdateProfile({super.key});
+class UpdatePassword extends StatelessWidget {
+  const UpdatePassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class UpdateProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 16.0),
               child: const Text(
-                'Update Profile',
+                'Update Password',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
               ),
             ),
@@ -22,26 +22,21 @@ class UpdateProfile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 8.0,
               children: [
-                const Text('Nama'),
+                const Text('Kata Sandi'),
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Name',
+                    labelText: 'Password',
                     border: OutlineInputBorder(),
                   ),
+                  obscureText: true,
                 ),
-                const Text('Email'),
+                const Text('Konfirmasi Sandi Baru'),
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Confirm Password',
                     border: OutlineInputBorder(),
                   ),
-                ),
-                const Text('Nomor HP'),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'No HP',
-                    border: OutlineInputBorder(),
-                  ),
+                  obscureText: true,
                 ),
                 Align(
                   alignment: AlignmentGeometry.center,

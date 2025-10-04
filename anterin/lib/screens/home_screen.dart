@@ -9,6 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonMargin = EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -31,16 +32,19 @@ class HomeScreen extends StatelessWidget {
                 ),
                 FinancialProviderWidget(), //   WIDGET SALDO
                 ProviderButtonWidget(
+                  buttonMargin: buttonMargin,
                   goRoute: () => context.push('/home/motorcycle/'),
                   buttonTitle: 'Nebeng Motor',
                   iconName: Icons.motorcycle_outlined,
                 ),
                 ProviderButtonWidget(
+                  buttonMargin: buttonMargin,
                   goRoute: () => context.push('/home/car/'),
                   buttonTitle: 'Nebeng Mobil',
                   iconName: Icons.car_rental_outlined,
                 ),
                 ProviderButtonWidget(
+                  buttonMargin: buttonMargin,
                   goRoute: () => context.push('/home/delivery/'),
                   buttonTitle: 'Titip Antar Barang',
                   iconName: Icons.inventory_2_outlined,

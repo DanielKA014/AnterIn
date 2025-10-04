@@ -82,24 +82,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50], // Background abu muda
-      //   //appBar: AppBar(
-      //     title: Text(
-      //       'Riwayat Perjalanan',
-      //       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      //     ),
-      //     backgroundColor: Color(0xFF00C851), // Hijau Gojek
-      //     elevation: 0,
-      //     flexibleSpace: Container(
-      //       decoration: BoxDecoration(
-      //         gradient: LinearGradient(
-      //           colors: [Color(0xFF00C851), Color(0xFF00A651)], // Gradient hijau
-      //           begin: Alignment.topLeft,
-      //           end: Alignment.bottomRight,
-      //         ),
-      //       ),
-      //     ),
-      //   ),
       body: ListView.builder(
         padding: EdgeInsets.all(16),
         itemCount: orders.length,

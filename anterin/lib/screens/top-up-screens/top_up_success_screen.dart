@@ -4,10 +4,6 @@ import 'package:go_router/go_router.dart';
 class TopUpSuccessScreen extends StatelessWidget {
   const TopUpSuccessScreen({super.key});
 
-  // Future<void> _onBackPressed(context, result) async {
-  //   context.goNamed('home');
-  // }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
