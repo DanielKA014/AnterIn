@@ -28,10 +28,9 @@ class _NewPassPageState extends State<NewPassPage> {
     } else if (_passController.text != _confirmController.text &&
         _passController.text.isNotEmpty &&
         _confirmController.text.isNotEmpty) {
-      // Tampilkan pesan error jika password tidak cocok
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Password dan Konfirmasi Password tidak cocok!'),
+          content: Text('Password dan Konfirmasi Password tidak sama'),
         ),
       );
     }
