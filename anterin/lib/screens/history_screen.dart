@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../models/order.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
 
   @override
-  _HistoryScreenState createState() => _HistoryScreenState();
+  State<HistoryScreen> createState() => _HistoryScreenState();
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
@@ -123,7 +122,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Color(0xFF00C851).withOpacity(0.1),
+                          color: Color(0xFF00C851).withValues(alpha: 0.1),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -162,7 +161,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: getStatusColor(order.status).withOpacity(0.1),
+                          color: getStatusColor(
+                            order.status,
+                          ).withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
                             color: getStatusColor(order.status),

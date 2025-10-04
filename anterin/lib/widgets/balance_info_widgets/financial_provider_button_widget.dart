@@ -26,7 +26,10 @@ class FinancialProviderButtonWidget extends StatelessWidget {
             onPressed: goRoute,
             child: Icon(iconName),
           ),
-          Text(buttonCaption),
+          Text(
+            buttonCaption,
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
         ],
       ),
     );
