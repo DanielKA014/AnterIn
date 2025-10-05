@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:anterin/routes/main_router.dart';
+import 'package:anterin/routes/main_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:anterin/models/UserData.dart';
 // import 'package:anterin/screens/activity_screen.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
 }
 
 GoRouter _initializeRoute() {
-  final MainRouter mainRoute = MainRouter();
+  final MainRoutes mainRoute = MainRoutes();
   GoRouter mainRouter = mainRoute.mainRouter();
   return mainRouter;
 }
