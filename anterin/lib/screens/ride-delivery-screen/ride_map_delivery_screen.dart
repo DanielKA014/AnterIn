@@ -147,7 +147,10 @@ class _RideMapScreenDeliveryState extends State<RideMapScreenDelivery> {
                 );
               },
               onChat: () {
-                context.push('/chat', extra: {'driverName': randomDriverName});
+                context.push(
+                  '/message',
+                  extra: {'driverName': randomDriverName},
+                );
               },
               isDelivery: true,
               weight: widget.weight,
