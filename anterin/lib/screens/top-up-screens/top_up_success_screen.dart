@@ -9,6 +9,7 @@ class TopUpSuccessScreen extends StatelessWidget {
     return PopScope(
       canPop: true,
       onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
         context.goNamed('home');
       },
       child: Scaffold(

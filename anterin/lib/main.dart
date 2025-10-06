@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:anterin/routes/main_routes.dart';
-import 'package:provider/provider.dart';
-import 'package:anterin/models/UserData.dart';
-// import 'package:anterin/screens/activity_screen.dart';
+// import 'package:provider/provider.dart';
+// import 'package:anterin/models/UserData.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(
-    ChangeNotifierProvider(create: (_) => UserData(), child: const MyApp()),
-  );
+  // runApp(
+  //   ChangeNotifierProvider(create: (_) => UserData(), child: const MyApp()),
+  // );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

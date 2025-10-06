@@ -5,13 +5,11 @@ class User {
   final String no;
   final String about;
 
-
   const User({
     required this.imagePath,
     required this.name,
     required this.email,
     required this.no,
     required this.about,
-
   });
 }
